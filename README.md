@@ -43,3 +43,9 @@ curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" -
 }'
 
 # 6. Android: set Retrofit base URL to your laptop IP (Wi‑Fi interface)
+
+## Docker Deployment
+
+docker pull yourusername/buffermind-backend:latest
+
+docker run -p 8000:8000 yourusername/buffermind-backend:latest
