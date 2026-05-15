@@ -1,0 +1,27 @@
+# File: docker-compose.yml (in buffermind-backend/)
+
+version: "3.8"
+
+services:
+  buffermind-backend:
+    build: .
+    container_name: buffermind-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./logs:/app/logs
+    environment:
+      - TZ=Asia/Kolkata
+      - LOG_LEVEL=INFO
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
